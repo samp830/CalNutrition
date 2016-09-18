@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="#e61a5f"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/product_calorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories"
+        android:textColor="#46a2f2"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/product_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Protein"
+        android:textColor="#46a2f2"
+        android:textSize="18dp" />
+    <TextView
+        android:id="@+id/product_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fat"
+        android:textColor="#46a2f2"
+        android:textSize="18dp"
+        android:textStyle="italic" />
+    <TextView
+        android:id="@+id/product_carbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carbs"
+        android:textColor="#46a2f2"
+
+        android:textSize="18dp"
+        android:textStyle="italic" />
+
+
+</LinearLayout>
