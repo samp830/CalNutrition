@@ -38,7 +38,7 @@ public class ListProductAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return mProductList.get(position).getNumber();
+        return mProductList.get(position).getId();
     }
 
     @Override
@@ -52,12 +52,11 @@ public class ListProductAdapter extends BaseAdapter {
         TextView Carbs = (TextView)v.findViewById(R.id.product_carbs);
 
         Name.setText(mProductList.get(position).getName());
-        Calorie.setText(String.valueOf(mProductList.get(position).getCalorie()));
-        Protein.setText(mProductList.get(position).getProtein());
-        Fat.setText(mProductList.get(position).getFat());
-        Carbs.setText(mProductList.get(position).getCarbs());
-
-        v.setTag( mProductList.get(position).getNumber());
+        Calorie.setText("Calories: " + String.valueOf(mProductList.get(position).getCalorie()));
+        Protein.setText("Protein: " + String.valueOf(mProductList.get(position).getProtein()));
+        Fat.setText("Fat: " + String.valueOf(mProductList.get(position).getFat()));
+        Carbs.setText("Carbs: " + String.valueOf(mProductList.get(position).getCarbs()));
+        v.setTag( mProductList.get(position).getId());
 
         return v;
     }

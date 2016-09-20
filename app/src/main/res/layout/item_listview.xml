@@ -46,7 +46,6 @@
         android:layout_height="wrap_content"
         android:text="Carbs"
         android:textColor="#46a2f2"
-
         android:textSize="18dp"
         android:textStyle="italic" />
 

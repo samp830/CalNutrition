@@ -4,15 +4,15 @@ package com.example.samp8.calnutrition.model;
  * Created by samp8 on 9/17/2016.
  */
 public class Product {
-        private int number;
+        private int id;
         private String name;
         private int calorie;
         private int protein ;
         private int fat;
         private int carbs;
 
-        public Product(int number, String name, int calorie, int protein, int fat, int carbs) {
-            this.number = number;
+        public Product(int id, String name, int calorie, int protein, int fat, int carbs) {
+            this.id = id;
             this.name = name;
             this.calorie = calorie;
             this.protein = protein;
@@ -21,12 +21,12 @@ public class Product {
 
         }
 
-        public int getNumber() {
-            return number;
+        public int getId() {
+            return id;
         }
 
-        public void setNumber(int number) {
-            this.number= number;
+        public void setId(int id) {
+            this.id= id;
         }
 
         public String getName() {

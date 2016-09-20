@@ -16,7 +16,7 @@ import com.example.samp8.calnutrition.model.Product;
  */
 public class AddOrEditActivity extends Activity {
     private TextView tvAddOrEdit;
-    private EditText txtNumber;
+    private EditText txtId;
     private EditText txtName;
     private EditText txtCalorie;
     private EditText txtProtein;
@@ -31,7 +31,7 @@ public class AddOrEditActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_or_edit);
         tvAddOrEdit = (TextView)findViewById(R.id.tvAddOrEdit);
-        txtNumber = (EditText)findViewById(R.id.txtNumber);
+        txtId = (EditText)findViewById(R.id.txtId);
         txtName = (EditText)findViewById(R.id.txtName);
         txtCalorie= (EditText)findViewById(R.id.txtCalorie);
         txtProtein = (EditText)findViewById(R.id.txtProtein);
@@ -43,24 +43,24 @@ public class AddOrEditActivity extends Activity {
         tvAddOrEdit.setText(action);
         btnAddOrEdit.setText(action);
         dbHelper = new DatabaseHelper(getApplicationContext());
-        txtNumber.setEnabled(true);
+        txtId.setEnabled(true);
 
         if("Edit".equals(action)){
-            int productId = getIntent().getExtras().getInt("Number");
+            int productId = getIntent().getExtras().getInt("Id");
             Product product = dbHelper.getProductById(productId);
-            txtNumber.setText(String.valueOf(product.getNumber()));
-            txtNumber.setEnabled(false);
+            txtId.setText(String.valueOf(product.getId()));
+            txtId.setEnabled(false);
             txtName.setText(product.getName());
             txtCalorie.setText(String.valueOf(product.getCalorie()));
-            txtProtein.setText(product.getProtein());
-            txtFat.setText(product.getFat());
-            txtCarbs.setText(product.getCarbs());
+            txtProtein.setText(String.valueOf(product.getProtein()));
+            txtFat.setText(String.valueOf(product.getFat()));
+            txtCarbs.setText(String.valueOf(product.getCarbs()));
         }
         btnAddOrEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Product product = new Product(
-                        Integer.parseInt(txtNumber.getText().toString()),
+                        Integer.parseInt(txtId.getText().toString()),
                         txtName.getText().toString(),
                         Integer.parseInt(txtCalorie.getText().toString()),
                         Integer.parseInt(txtProtein.getText().toString()),

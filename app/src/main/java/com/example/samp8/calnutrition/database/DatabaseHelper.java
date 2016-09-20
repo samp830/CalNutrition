@@ -12,17 +12,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.samp8.calnutrition.model.Product;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DBNAME = "breakfast.sqlite";
-    public static final String DBLOCATION = "/data/data/com.example.samp8.calnutrition/database/";
+    public static String DBLOCATION = null;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
     public DatabaseHelper(Context context) {
-        super(context, DBNAME, null, 2);
+        super(context, DBNAME, null, 11);
+        this.DBLOCATION = "/data/data/" + context.getPackageName() + "/" + "databases/";
         this.mContext = context;
     }
 
@@ -33,7 +35,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public void openDatabase() {
@@ -81,13 +82,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public long updateProduct(Product product) {
         ContentValues contentValues = new ContentValues();
+        contentValues.put("NUMBER", product.getId());
         contentValues.put("NAME", product.getName());
         contentValues.put("CALORIES", product.getCalorie());
         contentValues.put("PROTEIN", product.getProtein());
         contentValues.put("FAT", product.getFat());
         contentValues.put("CARBS", product.getCarbs());
 
-        String[] whereArgs = {Integer.toString(product.getNumber())};
+        String[] whereArgs = {Integer.toString(product.getId())};
         openDatabase();
         long returnValue = mDatabase.update("PRODUCT",contentValues, "NUMBER=?", whereArgs);
         closeDatabase();
@@ -96,6 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long addProduct(Product product) {
         ContentValues contentValues = new ContentValues();
+        contentValues.put("NUMBER", product.getId());
         contentValues.put("NAME", product.getName());
         contentValues.put("CALORIES", product.getCalorie());
         contentValues.put("PROTEIN", product.getProtein());
