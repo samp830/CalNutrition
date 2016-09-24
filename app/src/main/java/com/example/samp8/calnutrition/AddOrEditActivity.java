@@ -76,7 +76,12 @@ public class AddOrEditActivity extends Activity {
                     } else {
                         Toast.makeText(getApplicationContext(),"Update failed", Toast.LENGTH_SHORT).show();
                     }
-                } else {
+                }
+                else if("Choose".equals(action)) {
+                    Toast.makeText(getApplicationContext(),"#Rich Chigga", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
                     long result = dbHelper.addProduct(product);
                     if(result>0){
                         Toast.makeText(getApplicationContext(),"Added", Toast.LENGTH_SHORT).show();

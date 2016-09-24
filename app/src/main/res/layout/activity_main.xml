@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d1d1d1"
     android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:ems="25"
+        android:background="#FFF"
+        android:inputType="none"
+        android:id="@+id/txtSum"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"/>
+
+    <ListView
+        android:id="@+id/listview_product"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingBottom="5dp"
+        android:divider="#d1d1d1"
+        android:dividerHeight="10dp"
+        android:layout_above="@+id/txtSum">
+    </ListView>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Food"
         android:background="#FFF"
-        android:id="@+id/btnAdd"/>
-    <ListView
-        android:id="@+id/listview_product"
+        android:id="@+id/btnAdd"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <SearchView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:divider="#d1d1d1"
-        android:dividerHeight="10dp">
-    </ListView>
-</LinearLayout>
+        android:layout_height="35dp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/btnAdd"
+        android:layout_alignParentStart="true"
+        android:id="@+id/SearchView"
+        android:queryHint="Search"/>
+</RelativeLayout>

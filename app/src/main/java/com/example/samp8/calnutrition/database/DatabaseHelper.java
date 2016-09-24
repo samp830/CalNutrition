@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase mDatabase;
 
     public DatabaseHelper(Context context) {
-        super(context, DBNAME, null, 11);
+        super(context, DBNAME, null, 14);
         this.DBLOCATION = "/data/data/" + context.getPackageName() + "/" + "databases/";
         this.mContext = context;
     }
@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Product product = null;
         List<Product> productList = new ArrayList<>();
         openDatabase();
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM PRODUCT", null);
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM PRODUCT ", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             product = new Product(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(3),
@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
         product = new Product(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(3),
                 cursor.getInt(4));
-        //Only 1 resul
+        //Only 1 result
         cursor.close();
         closeDatabase();
         return product;
@@ -91,7 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String[] whereArgs = {Integer.toString(product.getId())};
         openDatabase();
-        long returnValue = mDatabase.update("PRODUCT",contentValues, "NUMBER=?", whereArgs);
+        long returnValue = mDatabase.update("PRODUCT", contentValues, "NUMBER=?", whereArgs);
         closeDatabase();
         return returnValue;
     }

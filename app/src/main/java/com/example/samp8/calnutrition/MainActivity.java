@@ -5,13 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,11 +36,15 @@ public class MainActivity extends Activity {
         private List<Product> mProductList;
         private DatabaseHelper mDBHelper;
         private Button btnAdd;
-        @Override
+        private EditText txtSum;
+        public SearchView searchview;
+        public static int cal=0;
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
             setContentView(R.layout.activity_main);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        txtSum = (EditText)findViewById(R.id.txtSum);
             lvProduct = (ListView)findViewById(R.id.listview_product);
             mDBHelper = new DatabaseHelper(this);
             btnAdd = (Button)findViewById(R.id.btnAdd);
@@ -63,9 +70,8 @@ public class MainActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     int idProduct = (int) view.getTag();
-                    Toast.makeText(getApplicationContext(), idProduct + "", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), idProduct + "", Toast.LENGTH_SHORT).show();
                     Toast.makeText(getApplicationContext(), ((TextView) view.findViewById(R.id.product_name)).getText().toString(), Toast.LENGTH_SHORT).show();
-
                 }
             });
             registerForContextMenu(lvProduct
@@ -120,6 +126,7 @@ public class MainActivity extends Activity {
         public boolean onContextItemSelected(MenuItem item) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
                     .getMenuInfo();
+
             //Get id of item clicked
             // Retrieve the item that was clicked on
             View v = (View) lvProduct.getAdapter().getView(
@@ -138,9 +145,17 @@ public class MainActivity extends Activity {
                         Toast.makeText(getApplicationContext(),"Deleted", Toast.LENGTH_SHORT).show();
                         mProductList.remove(info.position);
                         adapter.updateList(mProductList);
+
                     } else {
                         Toast.makeText(getApplicationContext(),"Delete failed", Toast.LENGTH_SHORT).show();
                     }
+                    break;
+                case R.id.menu_item_choose:
+                    if (cal >2000){
+                        Toast.makeText(getApplicationContext(),"DUDE, YOU'VE REACHED YOUR LIMIT", Toast.LENGTH_LONG).show();
+                    }
+                    cal= cal + mProductList.get(info.position).getCalorie();
+                    txtSum.setText("Total Calories: " + cal);
 
                     break;
             }
